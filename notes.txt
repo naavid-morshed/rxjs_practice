@@ -1,0 +1,18 @@
+1. Asynchronous Programming : When the processing of an event does not block the process of other events.
+2. Event Loop: In older GUI applications, UI was updated only after some user actions like clicking a button. This was done via event-loop. An endless 	 	     process responsible for handling user input and updating UI. This process was synchronous and whole application had to wait for user 
+	       input and if user did not perform any input operation, the application would hang and GUI would be unresponsive. (solution at 3)
+3. Event Queue & Parallel Event Processing (Consumer & Producer Pattern): 
+	Solution is to decouple event handling from GUI update. It is done by introducing event queue and parallel event processing. This approach is 	      known by Consumer and Producer Pattern. A thread (called Producer thread) handles user input and puts events into a queue, a consumer thread 
+	takes events from the head of the queue and process them. 
+4. Reactive Programming: A consumer thread may also act as a producer thread and put GUI update requests into a GUI update thread for processing. This 			       chaining of consumer and producer pattern is called Reactive stream and programming such way is called reactive programming. 			     Reactive programming is considered is a perfect fit for microservices and cloud based services implemented as a set of
+			 microservices.
+5. Observer Pattern: A caller registers a callback procedure, this procedure is called when result is available. The caller does not have to wait for
+		     the result to finish, caller can do other things while also waiting for result. Caller can register to multiple callbacks, this
+		     is specially useful when caller wants to be notified about the result of the async procedure and also when the async procedure
+		     fails. In this case, caller can register to two callback procedure, one for success and one for failure. 
+		     A caller can also be callee, can perform some process on the result and pass it back to another caller.
+		     Example: onNext(), onError(), onCompleted(). Three callback procedure for one Caller. One to Many relation.
+
+	In observer pattern, the return value of an async procedure is called an Observable, and the callback procedure itself is called Observer.
+	The onNext(), onError(), onCompleted() above are all Observers, 
+6. Reactive Streams: In reactive applications, handling one event is not enough, a stream of events need to be dealt with.
